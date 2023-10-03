@@ -8,10 +8,6 @@ const app = express();
 app.use('/', router);
 
 
-
-
-
-
 const port = 8000;
 
 
