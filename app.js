@@ -5,7 +5,7 @@ const app = express();
 
 
 
-app.use('/', router);
+app.use('/livro', router);
 
 
 const port = 8000;

@@ -1,9 +1,11 @@
 import { Router } from "express";
-import { getLivros } from "../controladores/livro.js";
+import { getLivros, getLivroEspecifico } from "../controladores/livro.js";
 
 const router = Router();
 
-router.get('/livro', getLivros);
+router.get('/', getLivros);
+
+router.get('/:id', getLivroEspecifico);
 
 router.post('/livro', 
 (req, res) => {
