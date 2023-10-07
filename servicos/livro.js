@@ -10,8 +10,18 @@ function getLivroPorId(id){
   const livros = getTodosLivros();
   
   const livroFiltrado = livros.filter(livro => parseInt(id) === livro.id);
-  /* console.log(livroFiltrado); */
   return livroFiltrado;
  };
 
-export { getTodosLivros, getLivroPorId};
+ function insereLivro(livroNovo){
+  const livros = getTodosLivros();
+  if(livroNovo.nome && livroNovo.id){
+    const novaListaLivros = [...livros, livroNovo];
+  
+    fs.writeFileSync(path, JSON.stringify(novaListaLivros))
+  } else{
+    throw(new Error)
+  }
+ }
+
+export { getTodosLivros, getLivroPorId, insereLivro};
