@@ -23,24 +23,30 @@ function getLivroPorId(id){
   return livroFiltrado;
  };
 
- function insereLivro(livroNovo){
+function insereLivro(livroNovo){
   const livros = getTodosLivros();
   if(livroNovo.nome && livroNovo.id){
     const novaListaLivros = [...livros, livroNovo];
-  
+
     fs.writeFileSync(path, JSON.stringify(novaListaLivros))
   } else{
     throw(new Error)
   }
- }
+}
 
- function modificaLivro(id, dadosNovos){
+function modificaLivro(id, dadosNovos){
   const livros = getTodosLivros();
   const indiceLivroParaMudar = livros.findIndex(livro => comparaId(id, livro));
   const objetoParaMudar = livros[indiceLivroParaMudar];
   const objetoModificado = {...objetoParaMudar, ...dadosNovos};
   livros[indiceLivroParaMudar] = objetoModificado;
   fs.writeFileSync(path, JSON.stringify(livros));
- }
+}
 
-export { getTodosLivros, getLivroPorId, insereLivro, modificaLivro};
+function apaga(id){
+  const livros = getTodosLivros();
+  const todosMenosLivroDeletado = livros.filter(livro => !comparaId(id, livro));
+  fs.writeFileSync(path, JSON.stringify(todosMenosLivroDeletado));
+}
+
+export { getTodosLivros, getLivroPorId, insereLivro, modificaLivro, apaga};

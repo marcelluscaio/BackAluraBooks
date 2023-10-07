@@ -1,4 +1,4 @@
-import { getTodosLivros, getLivroPorId, insereLivro, modificaLivro } from "../servicos/livro.js";
+import { getTodosLivros, getLivroPorId, insereLivro, modificaLivro, apaga } from "../servicos/livro.js";
 
 function getLivros(req, res) {
   try{
@@ -30,7 +30,24 @@ function criaLivro(req, res){
 };
 
 function editaLivro(req, res){
-  modificaLivro(req.params['id'], req.body)
+  try{
+    const livroNovo = req.body;
+    const id = req.params['id'];
+    modificaLivro(id, livroNovo)
+    res.status(200).send(livroNovo);
+  } catch(error){
+    res.status(500).send(error)
+  }
 }
 
-export {getLivros, getLivroEspecifico, criaLivro, editaLivro};
+function deletaLivro(req, res){
+  try{
+    const id = req.params['id'];
+    apaga(id);
+    res.status(200).send("Livro deletado");
+  } catch(error){
+    res.status(500).send(error)
+  }
+}
+
+export {getLivros, getLivroEspecifico, criaLivro, editaLivro, deletaLivro};
