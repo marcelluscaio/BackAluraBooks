@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getLivros, getLivroEspecifico, criaLivro } from "../controladores/livro.js";
+import { getLivros, getLivroEspecifico, criaLivro, editaLivro } from "../controladores/livro.js";
 
 const router = Router();
 
@@ -9,9 +9,6 @@ router.get('/:id', getLivroEspecifico);
 
 router.post('/', criaLivro);
 
-router.post('/livro', 
-(req, res) => {
-  res.send("Requisicao post")
-});
+router.patch('/:id', editaLivro);
 
 export { router };

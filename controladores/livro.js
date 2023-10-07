@@ -1,4 +1,4 @@
-import { getTodosLivros, getLivroPorId, insereLivro } from "../servicos/livro.js";
+import { getTodosLivros, getLivroPorId, insereLivro, modificaLivro } from "../servicos/livro.js";
 
 function getLivros(req, res) {
   try{
@@ -29,4 +29,8 @@ function criaLivro(req, res){
   }
 };
 
-export {getLivros, getLivroEspecifico, criaLivro};
+function editaLivro(req, res){
+  modificaLivro(req.params['id'], req.body)
+}
+
+export {getLivros, getLivroEspecifico, criaLivro, editaLivro};
