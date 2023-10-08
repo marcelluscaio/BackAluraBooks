@@ -14,8 +14,7 @@ function comparaId(id, livro){
    return parseInt(id) === livro.id;
  } else {
   throw(new Error)
- }
- 
+ } 
 };
 
 function getTodosLivros(){
